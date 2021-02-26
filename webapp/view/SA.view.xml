@@ -1,0 +1,112 @@
+
+
+<mvc:View
+    controllerName="expensesapplication.controller.SA"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+	xmlns:sf="sap.ui.layout.form"
+	xmlns:viz.data="sap.viz.ui5.data"
+	xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" 
+	xmlns:viz="sap.viz.ui5.controls"
+
+	
+
+	
+>
+		
+		<SplitApp id="idSplit" >
+	
+	<masterPages >
+        <Page title="Employee Names" >
+		<Toolbar >
+		<SearchField search="onSearch" liveChange="onSearch"></SearchField>
+		</Toolbar>
+	
+					<List id="idList"   items="{myModel1>/ZADMIN_C_VIEW}" mode="SingleSelectMaster" selectionChange="empSelected">
+					<items>
+					<ObjectListItem intro="{myModel1>Empid}" title="{myModel1>Empfirstname}" ></ObjectListItem>
+					
+					</items>
+					</List>
+					<footer>
+					<OverflowToolbar >
+					<ToolbarSpacer/>
+					<Button text="Add" type="Emphasized" press="onOpenFragment"></Button>
+					</OverflowToolbar>
+					</footer>
+</Page>
+
+	</masterPages>
+<detailPages>
+	<Page title="Expenses Details">
+	<!-- <ToolbarSpacer /> -->
+
+	<headerContent>
+    <!-- <Switch state="true" change="onChange">
+				<layoutData>
+					<FlexItemData growFactor="1" />
+				</layoutData>
+			</Switch> -->
+            <Button icon="sap-icon://notification-2" type="Emphasized" press="onOpenNoti"></Button>
+            <Button press="onNext"  id="myModel9" icon="sap-icon://expense-report" type="Emphasized"></Button>
+			<Button tooltip="Logout"  icon="sap-icon://log" type="Emphasized" press="onExpense"/>
+            	
+		</headerContent>
+<viz:VizFrame id="idVizFrame" 
+                height='100%' width="100%" vizType='line' visible="true" vizProperties="{title:{visible:true, text:'Line Chart'}}">
+                <viz:dataset>
+                    <viz.data:FlattenedDataset data="{myModel6>/Expenses}">
+                        <viz.data:dimensions>
+                            <viz.data:DimensionDefinition name="Month"
+                                value="{myModel6>Expnsmonth}" />
+                        </viz.data:dimensions>
+                        <viz.data:measures>
+                            <viz.data:MeasureDefinition name="Expenses"
+                                value="{myModel6>Expenses}" />
+                            <viz.data:MeasureDefinition name="Empid"
+                                value="{myModel6>>Empid}" />
+                        </viz.data:measures>
+                    </viz.data:FlattenedDataset>
+                </viz:dataset>
+
+                <viz:feeds>
+                    <viz.feeds:FeedItem id='valueAxisFeed' uid="valueAxis" type="Measure"
+                        values="Expenses" />
+                    <viz.feeds:FeedItem uid="categoryAxis" type="Dimension"
+                        values="Month" />
+                </viz:feeds>
+            </viz:VizFrame>
+	
+
+    <viz:VizFrame id="idVizFrame3" 
+                height='100%' width="100%" vizType='bar' visible="false" vizProperties="{title:{visible:true, text:'Bar Chart'}}">
+                <viz:dataset>
+                    <viz.data:FlattenedDataset data="{myModel6>/Expenses}">
+                        <viz.data:dimensions>
+                            <viz.data:DimensionDefinition name="Month"
+                                value="{myModel6>Expnsmonth}" />
+                        </viz.data:dimensions>
+                        <viz.data:measures>
+                            <viz.data:MeasureDefinition name="Expenses"
+                                value="{myModel6>Expenses}" />
+                            <viz.data:MeasureDefinition name="Empid"
+                                value="{myModel6>>Empid}" />
+                        </viz.data:measures>
+                    </viz.data:FlattenedDataset>
+                </viz:dataset>
+
+                <viz:feeds>
+                    <viz.feeds:FeedItem id='valueAxisFeed3' uid="valueAxis" type="Measure"
+                        values="Expenses" />
+                    <viz.feeds:FeedItem uid="categoryAxis" type="Dimension"
+                        values="Month" />
+                </viz:feeds>
+            </viz:VizFrame>
+	
+		
+		</Page>
+</detailPages>
+</SplitApp>
+
+</mvc:View>

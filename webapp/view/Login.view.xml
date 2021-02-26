@@ -1,0 +1,35 @@
+<mvc:View
+    controllerName="expensesapplication.controller.Login"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+	xmlns:sf="sap.ui.layout.form"
+>
+	
+		<App id="app">
+			<pages>
+				<Page id="page" title="Login Page" class="myBackgroundStyle" titleLevel="H1">
+					<content>
+					<VBox fitContainer="true" alignItems="Center" justifyContent="Center">
+					<sf:SimpleForm editable="true">
+					<VBox alignContent="Center" justifyContent="Center">
+					<HBox alignContent="Center" justifyContent="Center">
+					<Input id="inputid1"  width="20rem" liveChange="changeName1"/>
+					</HBox>
+					<HBox alignContent="Center" justifyContent="Center">
+					<Input id="inputid2"  width="20rem" liveChange="changeName2"/>
+					</HBox>
+					<HBox alignContent="Center" justifyContent="Center">
+					<Button id="loginid"  text="Login" press="onLogin" width="20rem" type="Emphasized"/>
+					</HBox>
+					</VBox>
+					</sf:SimpleForm>
+					</VBox>
+					
+					
+					
+					</content>
+				</Page>
+			</pages>
+		</App>
+</mvc:View>

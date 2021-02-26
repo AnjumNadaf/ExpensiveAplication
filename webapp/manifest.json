@@ -1,0 +1,168 @@
+{
+    "_version": "",
+    "sap.app": {
+        "id": "expensesapplication",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "title": "",
+        "description": "",
+        "resources": "resources.json",
+        "ach": "ach",
+        "dataSources": {
+            "mainService": {
+                "uri": "/sap/opu/odata/sap/ZADMIN_C_VIEW_CDS/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0",
+                    "annotations": [],
+                    "localUri": "localService/mainService/metadata.xml"
+                }
+            },
+            "ZEXPENSES_C_VIEW_CDS": {
+                "uri": "/sap/opu/odata/sap/ZEXPENSES_C_VIEW_CDS/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0",
+                    "annotations": [],
+                    "localUri": "localService/ZEXPENSES_C_VIEW_CDS/metadata.xml"
+                },
+                "isLocal": false,
+                "order": 1,
+                "isActive": true
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "sap-icon://task",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": false,
+        "rootView": {
+            "viewName": "expensesapplication.view.Login",
+            "type": "XML",
+            "async": true,
+            "id": "Login"
+        },
+        "dependencies": {
+            "minUI5Version": "1.66.0",
+            "libs": {
+                "sap.ui.core": {},
+                "sap.m": {},
+                "sap.ui.layout": {},
+                "sap.uxap": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "expensesapplication.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true
+            },
+            "ZEXPENSES_C_VIEW_CDS": {
+                "dataSource": "ZEXPENSES_C_VIEW_CDS",
+                "preload": true,
+                "settings": {
+                    "defaultCountMode": "Inline"
+                }
+            },
+            "mainService": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "defaultCountMode": "Inline"
+                }
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "expensesapplication.view",
+                "controlAggregation": "pages",
+                "controlId": "app",
+                "clearControlAggregation": false
+            },
+            "routes": [
+                {
+                    "name": "RouteView1",
+                    "pattern": "RouteView1",
+                    "target": [
+                        "TargetView1"
+                    ]
+                },
+                {
+                    "name": "RouteView2",
+                    "pattern": "RouteView2",
+                    "target": [
+                        "TargetView2"
+                    ]
+                },
+                {
+                    "name": "RouteView3",
+                    "pattern": "RouteView3",
+                    "target": [
+                        "TargetView3"
+                    ]
+                },
+                {
+                    "name": "RouteView4",
+                    "pattern": "RouteView4/{empdd}",
+                    "target": [
+                        "TargetView4"
+                    ]
+                }
+            ],
+            "targets": {
+                "TargetView1": {
+                    "viewType": "XML",
+                    "viewName": "Login"
+                },
+                "TargetView2": {
+                    "viewType": "XML",
+                    "viewName": "chartView"
+                },
+                "TargetView3": {
+                    "viewType": "XML",
+                    "viewName": "SA"
+                },
+                "TargetView4": {
+                    "viewType": "XML",
+                    "viewName": "Employeeview"
+                }
+            }
+        }
+    }
+}
